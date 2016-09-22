@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<style type="text/css">
+	#banner{
+		box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    -webkit-box-sizing: border-box;
+	    width: 300px;
+	    height: 250px;
+	    border: 1px solid #000;
+	    background: #fff;
+	    margin: 0px;
+	    padding: 0px;
+	    overflow: hidden;
+	    position: relative;
+	}
+
+	#banner img{
+		position: absolute;
+		/*top: 0;
+		left: 0;*/
+	}
+	#i01{
+		top:-25px;
+		left: -287px;
+	}
+
+	#i02,#i03,#i04,#i05{
+		opacity: 0;
+	}
+	#i06{
+		top: 100%;
+	}
+</style>
+	<div id="banner">
+		<img id="i01" src="1.jpg" />
+		<img id="i02" src="2.png" />
+		<img id="i03" src="3.png" />
+		<img id="i04" src="4.png" />
+		<img id="i05" src="5.png" />
+		<img id="i06" src="6.png" />
+	</div>
+	<!-- <script>
+		function EasyWay(animationsArray){
+			this.animations = [];
+			if(animations instanceof Array){
+				this.animations = animationsArray;
+			}
+		}
+
+		EasyWay.prototype.play =
+	</script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://raw.githubusercontent.com/wilq32/jqueryrotate/master/jQueryRotate.js"></script>
+	<script type="text/javascript" src="https://2mobile.blob.core.windows.net/site/animation.min.js"></script>
+	<script>
+		var animations = [
+			{
+				id: "#i01",
+				delayBefore : 2000,
+				duration: 1000,
+				delayAfter: 1600,
+				animations: {left:0,top:0, width:"440px"},
+				// rotate: {
+				// 	duration: 6000,
+      	// 	angle: 0,
+      	// 	animateTo:1800
+      	// }
+			},{
+				id: "#i01",
+				duration: 1000,
+				delayAfter: 200,
+				animations: {top:'-150px', left: '-990px', width: '1310px'}
+			},{
+				id: "#i02",
+				duration: 1000,
+				delayAfter: 1200,
+				animations: {opacity:1}
+			},{
+				id: "#i02",
+				animations: {opacity:0}
+			},{
+				id: "#i03",
+				duration: 1000,
+				delayAfter: 1000,
+				animations: {opacity:1}
+			},{
+				id: "#i03",
+				animations: {opacity:0}
+			},{
+				id: "#i04",
+				duration: 1000,
+				delayAfter: 1000,
+				animations: {opacity:1}
+			},{
+				id: "#i04",
+				animations: {opacity:0}
+			},[
+				{
+					id: "#i05",
+					duration: 1000,
+					delayAfter: 1000,
+					animations: {opacity:1},
+				},{
+					id: "#i06",
+					duration: 1000,
+					delayAfter: 1000,
+					animations: {top: 0}
+				}
+			]
+		];
+
+		var movAnimations = new YAnimation(animations, {loop: false});
+		movAnimations.startAnimation();
+
+		$('#banner').on('click', function(){
+			movAnimations.restartAnimation();
+		});
+	</script>
+</body>
+</html>
