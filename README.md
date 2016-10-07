@@ -23,7 +23,7 @@ var animations = [
     delayAfter: 1600, //Delay after animations
     animations: {left:0,top:0, width:"440px"}
   },{
-    [ //Use an array when animation will be parallel
+    [ //Use matrix when animations are in parallel
       {
         id: "#i02",
         duration: 1000,
