@@ -3,9 +3,7 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var pump = require('pump');
 var uploadAzure = require('gulp-upload-azure');
-var config = require('/config.json');
-)
-
+var config = require('./config.json');
 
 gulp.task('default', ['compress']);
 
