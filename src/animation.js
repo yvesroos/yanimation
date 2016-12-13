@@ -1,6 +1,3 @@
-// Developed by Yves Roos Diehl
-// This library is developed for facilitate the use of jQuery animate function
-
 function YAnimation(arrAnimations, options){
   this.arrAnimations = arrAnimations || [];
   this.Time = {
@@ -10,19 +7,24 @@ function YAnimation(arrAnimations, options){
         clearTimeout(timer);
       });
     }
-  }
+  };
+  this.times = 0;
 
   this.defaults = {
     delayBefore: 0,
     duration: 500,
     delayAfter: 0,
-    loop: true
+    loop: true,
+	clearAfterEnd: true,
+	functionAfterLoop: function(){}
   }
 
   this.options = options || {};
     for (var opt in this.defaults)
         if (this.defaults.hasOwnProperty(opt) && !this.options.hasOwnProperty(opt))
             this.options[opt] = this.defaults[opt];
+
+  this.options.loop = this.options.loop == true ? -1 : parseInt(this.options.loop);
 
   this.animate = function animate(arrObj, animation, onComplete) {
 
@@ -36,11 +38,18 @@ function YAnimation(arrAnimations, options){
       if(animation.hasOwnProperty('rotate')){
         jQueryAnimation.rotate(animation.rotate);
       }
-      jQueryAnimation.animate(animation.animations, animation.duration, function () {
-        arrObj.Time.array.push(setTimeout(function () {
-          onComplete();
-        }, animation.delayAfter));
-      });
+	  if(animation.hasOwnProperty("action")){
+		  animation.action();
+		  arrObj.Time.array.push(setTimeout(function () {
+			  onComplete();
+		  }, animation.delayAfter));
+	  }else{
+		jQueryAnimation.animate(animation.animations, animation.duration, function () {
+			arrObj.Time.array.push(setTimeout(function () {
+				onComplete();
+			}, animation.delayAfter));
+		});
+	  }
     }, animation.delayBefore));
   }
 
@@ -72,15 +81,30 @@ function YAnimation(arrAnimations, options){
         });
       }
     } else {
-      if(this.options.loop){
-        this.restartAnimation();
-      }
+      if(this.options.loop != -1 && this.times < this.options.loop){
+		this.options.functionAfterLoop();
+		this.restartAnimation();
+		this.times++;
+      }else if(this.options.loop == -1){
+		this.restartAnimation();
+	  }else{
+		this.stopAnimation();
+	  }
     }
+  }
+
+  this.removeStyles = function(){
+	loopThrough(this.arrAnimations);
+  }
+
+  this.stopAnimation = function(){
+    this.Time.clear();
+	if(this.options.clearAfterEnd) this.removeStyles();
   }
 
   this.restartAnimation = function(){
     this.Time.clear();
-    loopThrough(this.arrAnimations);
+	this.removeStyles();
     this.startAnimation();
   }
 
@@ -97,41 +121,3 @@ function YAnimation(arrAnimations, options){
   }
 
 }
-
-// Array.prototype.startAnimation = function () {
-//   var animationsLength = this.length;
-//   if (animationsLength > 0) {
-//     var self = this;
-//     var animation = self[0];
-
-//     self.nextAnimation(0);
-//   }
-// }
-
-// Array.prototype.nextAnimation = function (i) {
-//   var self = this;
-//   var animation = self[i];
-//   var cont = i;
-
-//   if (i + 1 < this.length) {
-// 				if (Array.isArray(animation)) {
-//       var animationLength = animation.length;
-//       for (var ii = 0; ii < animationLength; ii++) {
-//         (function (contI) {
-//           var animationNested = animation[contI];
-//           animate(self, animationNested, function(){
-//             if (contI + 1 == animationLength) {
-//               self.nextAnimation(i + 1);
-//             }
-//           });
-//         })(ii)
-//       }
-// 				} else {
-//           animate(self, animation, function(){
-//             self.nextAnimation(cont + 1);
-//           });
-// 				}
-//   } else {
-// 				alert('fimmm!!');
-//   }
-// }

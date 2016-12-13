@@ -21,8 +21,6 @@
 
 	#banner img{
 		position: absolute;
-		/*top: 0;
-		left: 0;*/
 	}
 	#i01{
 		top:-25px;
@@ -44,18 +42,9 @@
 		<img id="i05" src="5.png" />
 		<img id="i06" src="6.png" />
 	</div>
-	<!-- <script>
-		function EasyWay(animationsArray){
-			this.animations = [];
-			if(animations instanceof Array){
-				this.animations = animationsArray;
-			}
-		}
-
-		EasyWay.prototype.play =
-	</script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://raw.githubusercontent.com/wilq32/jqueryrotate/master/jQueryRotate.js"></script>
+	<!--<script type="text/javascript" src="../src/velocity.min.js"></script>-->
 	<script type="text/javascript" src="../dist/animation.min.js"></script>
 	<script>
 		var animations = [
@@ -117,7 +106,7 @@
 		var movAnimations = new YAnimation(animations, {loop: false});
 		movAnimations.startAnimation();
 
-		$('#banner').on('click', function(){
+		document.getElementById('banner').addEventListener("click", function(){
 			movAnimations.restartAnimation();
 		});
 	</script>
