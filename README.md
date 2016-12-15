@@ -5,7 +5,7 @@ Wrapper for jQuery animation. The main purpose of this library is to facilitate 
 
 ## Requirements
 
-- [jQuery](https://jquery.com)
+- [Velocity](http://velocityjs.org)
 
 ## Installation
 
@@ -21,9 +21,10 @@ var animations = [
     delayBefore : 2000, //Delay before animations starts
     duration: 1000, //Duration of animations
     delayAfter: 1600, //Delay after animations
+    easing: //Easing name - Copied from https://matthewlein.com/ceaser/
     animations: {left:0,top:0, width:"440px"}
   },{
-    [ //Use matrix when animations are in parallel
+    [ //Use array when animations are in parallel
       {
         id: "#i02",
         duration: 1000,
@@ -47,7 +48,7 @@ var movAnimations = new YAnimation(animations, options);
 movAnimations.startAnimation();
 
 //Animation can be restarted
-$('#banner').on('click', function(){
+document.getElementById('banner').addEventListener("click", function(){
   movAnimations.restartAnimation();
 });
 ```
@@ -55,6 +56,6 @@ $('#banner').on('click', function(){
 ## TODO
 
 - [ ] Improve README XD
-- [ ] Remove jQuery dependency
+- [x] Remove jQuery dependency
 - [ ] Modularize to implement other types of animation
 - [ ] pause and continue animation
