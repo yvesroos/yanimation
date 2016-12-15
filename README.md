@@ -21,7 +21,7 @@ var animations = [
     delayBefore : 2000, //Delay before animations starts
     duration: 1000, //Duration of animations
     delayAfter: 1600, //Delay after animations
-    easing: //Easing name - Copied from https://matthewlein.com/ceaser/
+    easing: 'easeOutBack', //Easing name - Copied from https://matthewlein.com/ceaser/
     animations: {left:0,top:0, width:"440px"}
   },{
     [ //Use array when animations are in parallel
