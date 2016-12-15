@@ -42,10 +42,9 @@
 		<img id="i05" src="5.png" />
 		<img id="i06" src="6.png" />
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://raw.githubusercontent.com/wilq32/jqueryrotate/master/jQueryRotate.js"></script>
 	<!--<script type="text/javascript" src="../src/velocity.min.js"></script>-->
 	<script type="text/javascript" src="../dist/animation.min.js"></script>
+	<!--<script type="text/javascript" src="../src/animation.js"></script>-->
 	<script>
 		var animations = [
 			{
@@ -54,20 +53,17 @@
 				duration: 1000,
 				delayAfter: 1600,
 				animations: {left:0,top:0, width:"440px"},
-				// rotate: {
-				// 	duration: 6000,
-      	// 	angle: 0,
-      	// 	animateTo:1800
-      	// }
 			},{
 				id: "#i01",
 				duration: 1000,
 				delayAfter: 200,
+				easing: 'easeOutBack',
 				animations: {top:'-150px', left: '-990px', width: '1310px'}
 			},{
 				id: "#i02",
 				duration: 1000,
 				delayAfter: 1200,
+				easing: 'easeOutBack',
 				animations: {opacity:1}
 			},{
 				id: "#i02",
@@ -76,6 +72,7 @@
 				id: "#i03",
 				duration: 1000,
 				delayAfter: 1000,
+				easing: 'easeOutBack',
 				animations: {opacity:1}
 			},{
 				id: "#i03",
@@ -84,7 +81,8 @@
 				id: "#i04",
 				duration: 1000,
 				delayAfter: 1000,
-				animations: {opacity:1}
+				animations: {opacity:1},
+				easing: 'easeOutBack'
 			},{
 				id: "#i04",
 				animations: {opacity:0}
@@ -98,12 +96,13 @@
 					id: "#i06",
 					duration: 1000,
 					delayAfter: 1000,
+					easing: 'easeOutBack',
 					animations: {top: 0}
 				}
 			]
 		];
 
-		var movAnimations = new YAnimation(animations, {loop: false});
+		var movAnimations = new YAnimation(animations, {loop: true});
 		movAnimations.startAnimation();
 
 		document.getElementById('banner').addEventListener("click", function(){
