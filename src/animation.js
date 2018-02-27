@@ -25,7 +25,7 @@ function YAnimation(arrAnimations, options){
         if (this.defaults.hasOwnProperty(opt) && !this.options.hasOwnProperty(opt))
             this.options[opt] = this.defaults[opt];
 
-  this.options.loop = this.options.loop == true ? -1 : parseInt(this.options.loop);
+  this.options.loop = this.options.loop === true ? -1 : parseInt(this.options.loop);
 
   this.getEasing = function getEasing(easing){
     switch(easing){
@@ -57,6 +57,14 @@ function YAnimation(arrAnimations, options){
       case 'easeInOutExpo': return [1.000, 0.000, 0.000, 1.000];
       case 'easeInOutCirc': return [0.785, 0.135, 0.150, 0.860];
       case 'easeInOutBack': return [0.680, -0.550,0.265, 1.550];
+      case 'spring1' : return [300, 8];
+      case 'spring2' : return [600, 8];
+      case 'oneStep': return [1];
+      case 'twoStep': return [2];
+      case 'threeStep': return [3];
+      case 'fourStep': return [4];
+      case 'fiveStep': return [5];
+      case 'sixStep': return [6];
       default: return [0.250, 0.250, 0.750, 0.750];
     }
   };
